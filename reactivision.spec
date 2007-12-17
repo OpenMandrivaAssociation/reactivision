@@ -19,7 +19,6 @@ BuildRequires:	SDL-devel
 BuildRequires:	libraw1394-devel
 BuildRequires:	libdc1394-devel = 1.2.1
 BuildRequires:	portmidi-devel
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 reacTIVision is an open source, cross-platform framework for the fast and
