@@ -3,7 +3,7 @@
 Summary:	reacTIVision fiducial tracking framework
 Name:		reactivision
 Version:	1.3
-Release:	%mkrel 1
+Release:	%mkrel 3
 License:	GPL
 Group:		Sound
 URL:		http://www.iua.upf.es/mtg/reacTable/reacTIVision/
