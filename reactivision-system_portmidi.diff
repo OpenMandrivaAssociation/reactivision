@@ -1,0 +1,39 @@
+--- linux/Makefile	2006-11-21 17:05:02.000000000 +0100
++++ linux/Makefile.oden	2007-07-31 20:21:44.000000000 +0200
+@@ -1,8 +1,6 @@
+ TARGET = reacTIVision
+ CSOURCES = $(shell ls ../ext/libfidtrack/*.c ../common/*.c)  
+ COBJECTS = $(CSOURCES:.c=.o)
+-PMSOURCES = $(shell ls ../ext/portmidi/pm_common/*.c ../ext/portmidi/pm_linux/*.c ../ext/portmidi/porttime/porttime.c ../ext/portmidi/porttime/ptlinux.c)
+-PMOBJECTS = $(PMSOURCES:.c=.o)
+ CPPSOURCES = $(shell ls ./*.cpp ../common/*.cpp  ../ext/libfidtrack/*.cpp ../ext/libdtouch/*.cpp ../ext/tinyxml/*.cpp) 
+ CPPOBJECTS = $(CPPSOURCES:.cpp=.o)
+ OSCSOURCES = $(shell ls ../ext/oscpack/ip/posix/*.cpp ../ext/oscpack/osc/*.cpp) 
+@@ -11,23 +9,23 @@
+ SDL_CFLAGS  := $(shell sdl-config --cflags)
+ SDL_LDFLAGS := $(shell sdl-config --libs)
+ 
+-INCLUDES = -I../ext/oscpack -I../ext/libfidtrack -I../ext/libdtouch -I../ext/ccvt -I../common -I../ext/portmidi/pm_common -I../ext/portmidi/porttime -I../ext/tinyxml
++INCLUDES = -I../ext/oscpack -I../ext/libfidtrack -I../ext/libdtouch -I../ext/ccvt -I../common -I../ext/tinyxml
+ COPTS  = -Wall -O3 -finline-functions -ffast-math -funroll-all-loops -fomit-frame-pointer
+ CDEBUG = -Wall -g
+ CFLAGS = $(COPTS) $(SDL_CFLAGS) $(INCLUDES) -DLINUX -DOSC_HOST_LITTLE_ENDIAN -DNDEBUG -DPMALSA
+ #CFLAGS = $(CDEBUG) $(SDL_CFLAGS) $(INCLUDES) -DLINUX -DOSC_HOST_LITTLE_ENDIAN -DNDEBUG -DPMALSA
+ CXXFLAGS = $(CFLAGS)
+ 
+-LIBS = $(SDL_LDFLAGS) -lraw1394 -ldc1394_control -lasound ../ext/ccvt/libccvt.a
++LIBS = $(SDL_LDFLAGS) -lraw1394 -ldc1394_control -lasound ../ext/ccvt/libccvt.a -lportmidi -lporttime
+ 
+ all:	$(TARGET) 
+ 
+-$(TARGET) : $(CPPOBJECTS) $(COBJECTS) $(OSCOBJECTS) $(PMOBJECTS)
++$(TARGET) : $(CPPOBJECTS) $(COBJECTS) $(OSCOBJECTS)
+ 	$(CXX) -o $@ $+ $(LIBS) 
+ 	#strip $(TARGET)
+ 
+ clean:
+-	rm -f $(TARGET) $(CPPOBJECTS) $(COBJECTS) $(OSCOBJECTS) $(PMOBJECTS)
++	rm -f $(TARGET) $(CPPOBJECTS) $(COBJECTS) $(OSCOBJECTS)
+ 
+ run:	$(TARGET)
+ 	./$(TARGET)
