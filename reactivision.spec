@@ -6,7 +6,7 @@ Version:	1.4
 Release:	%mkrel 1
 License:	GPL
 Group:		Sound
-URL:		http://reactivision.sourceforge.net/
+URL:		https://reactivision.sourceforge.net/
 Source0:	http://prdownloads.sourceforge.net/reactivision/%{rname}-%{version}-src.zip
 Source1:	reacTIVision-16x16.png
 Source2:	reacTIVision-32x32.png
